@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Contact Form To Using JavaScript</title>
+
+    <link rel="stylesheet" href="contact.css">
+</head>
+<body>
+    <section class="color">
+        <header>
+         <div class="navbar">
+             <div class="logo"><a class="kill" href="home.html">MIDFREE</a></div>
+             <div class="glass">
+             <ul class="links">
+                 <li><a class="one" href="home.html">Home</a></li>
+                 <li><a class="one" href="therapy.html">Therapy</a></li>
+                 <li><a  class="one"href="ngo.html">Ngo</a></li>
+                 <li><a  class="one"href="mentor.html">Mentor</a></li>
+                 <li><a class="one" href="contact.html">Contact Us</a></li>
+             </ul>
+         </div>
+     
+         </div>
+        </header>
+    <div class="constainer">
+<form onsubmit="sendEmail(); reset(); return false;">
+    <h3>GET IN TOUCH</h3>
+    <input type="text"id="name"  placeholder="Your Name" required>
+    <input type="email" id="email" placeholder="Email id" required>
+    <input type="text" id="phone" placeholder="Phone no" required>
+    <textarea id="message" rows="4" placeholder="How can we help you?"></textarea>
+    <button type="submit">Send</button>
+</form>
+    </div>
+   
+ <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getDatabase,ref,set,get,child } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+   
+    const firebaseConfig = {
+      apiKey: "AIzaSyCeQBt6izwfAf1_d2CKmDdmbrrfIJTL1ds",
+      authDomain: "mid-free-final.firebaseapp.com",
+      projectId: "mid-free-final",
+      storageBucket: "mid-free-final.appspot.com",
+      messagingSenderId: "673814398090",
+      appId: "1:673814398090:web:131e5084ba7fc7cc131973",
+      measurementId: "G-XXW8H07DLQ"
+    };
+  
+  
+    const app = initializeApp(firebaseConfig);
+  
+  
+  
+  
+    const db=getDatabase(app);
+  
+    document.getElementById("submit").addEventListener('click',function(e){
+        e.preventDefault();
+          set(ref(db,'user/'+document.getElementById("username").value),
+          {
+                  username:document.getElementById("username").value,
+                  email:document.getElementById("email").value,
+                  PhoneNumber:document.getElementById("phone").value
+          })
+          alert("Login Sucessful !")
+    })
+</script>
+<script src="script.js"></script>
+</body>
+</html>
